@@ -22,9 +22,10 @@ steps:
   image: plugins/docker
   settings:
     auto_tag: true
-    auto_tag_suffix: test
+    auto_tag_suffix: latest 
     dockerfile: Dockerfile
     repo: reonzhao/drone-demo
+    registry: hub.docker.com
     password:
       from_secret: docker_password
     username:
