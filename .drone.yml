@@ -37,7 +37,11 @@ steps:
 
 - name: deploy
   image: lachlanevenson/k8s-kubectl
+  environment:
+    KUBE_CONFIG:
+      from_secret: kube_config
   commands:
-    - cat deployment.yaml
-    - ls
+    - echo $KUBE_CONFIG
+    - mkdir /root/.kube
+    - cat $KUBE_CONFIG > /root/.kube/config
     - kubectl apply -f deployment.yaml
