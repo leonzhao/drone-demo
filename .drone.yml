@@ -21,15 +21,11 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: true
-    auto_tag_suffix: latest 
     dockerfile: Dockerfile
     repo: reonzhao/drone-demo
-    registry: hub.docker.com
-    password:
-      from_secret: docker_password
-    username:
-      from_secret: docker_username
+    tags: latest
+    username: reonzhao
+    password: 19842895
   when:
     event:
     - push
