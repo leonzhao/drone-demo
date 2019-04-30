@@ -36,14 +36,8 @@ steps:
     - tag
 
 - name: deploy
-  image: quay.io/honestbee/drone-kubernetes
-  kubernetes_server: ${K8S_SERVER}
-  kubernetes_token: ${K8S_TOKEN}
-  namespace: default
-  deployment: drone-demo
-  repo: registry.cn-hongkong.aliyuncs.com/unex/drone-demo
-  container: drone-demo
-  tag:
-    - latest
-  when:
-    branch: [ master ]
+  image: lachlanevenson/k8s-kubectl
+  commands:
+    - cat deployment.yaml
+    - ls
+    - kubectl apply -f deployment.yaml
