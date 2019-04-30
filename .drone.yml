@@ -21,11 +21,14 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
+    auto_tag: true
+    auto_tag_suffix: latest
     dockerfile: Dockerfile
-    repo: reonzhao/drone-demo
-    tags: latest
-    username: reonzhao
-    password: 19842895
+    repo: renozhao/drone-demo
+    password:
+      from_secret: docker_password
+    username:
+      from_secret: docker_username
   when:
     event:
     - push
