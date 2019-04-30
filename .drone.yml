@@ -36,12 +36,15 @@ steps:
     - tag
 
 - name: deploy
-  image: lachlanevenson/k8s-kubectl
-  environment:
-    KUBE_CONFIG:
-      from_secret: kube_config
-  commands:
-    - echo $KUBE_CONFIG
-    - mkdir /root/.kube
-    - cat $KUBE_CONFIG > /root/.kube/config
-    - kubectl apply -f deployment.yaml
+  image: quay.io/honestbee/drone-kubernetes
+  kubernetes_server: ${KUBERNETES_SERVER}
+  kubernetes_cert: ${KUBERNETES_CERT}
+  kubernetes_token: ${KUBERNETES_TOKEN}
+  deployment: drone-demo
+  repo: registry.cn-hongkong.aliyuncs.com/unex/drone-demo
+  container:  drone-demo
+  namespace: app
+  tag:                 
+      - latest
+  when:
+        branch: [ master ]
