@@ -1,0 +1,35 @@
+---
+kind: pipeline
+name: default
+
+steps: 
+- name: test
+  image: node:8
+  commands:
+  - npm install
+  - npm test
+
+- name: build
+  image: node:8
+  commands:
+  - "npm run start:prod"
+  when:
+    event:
+    - push
+    - tag
+
+- name: publish
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    auto_tag_suffix: test
+    dockerfile: Dockerfile
+    repo: reonzhao/drone-demo
+    password:
+      from_secret: docker_password
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
