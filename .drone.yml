@@ -25,6 +25,7 @@ steps:
     auto_tag_suffix: latest
     dockerfile: Dockerfile
     repo: registry.cn-hongkong.aliyuncs.com/unex/drone-demo
+    registry: registry.cn-hongkong.aliyuncs.com 
     password:
       from_secret: docker_password
     username:
