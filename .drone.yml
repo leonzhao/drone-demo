@@ -37,9 +37,12 @@ steps:
 
 - name: deploy
   image: quay.io/honestbee/drone-kubernetes
-  kubernetes_server: ${KUBERNETES_SERVER}
-  kubernetes_cert: ${KUBERNETES_CERT}
-  kubernetes_token: ${KUBERNETES_TOKEN}
+  kubernetes_server:
+    from_secret: KUBERNETES_SERVER 
+  kubernetes_cert:
+    from_secret: KUBERNETES_CERT
+  kubernetes_token:
+    from_secret: KUBERNETES_TOKEN
   deployment: drone-demo
   repo: registry.cn-hongkong.aliyuncs.com/unex/drone-demo
   container:  drone-demo
