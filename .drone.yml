@@ -47,4 +47,6 @@ steps:
   tag:                 
       - latest
   when:
-        branch: [ master ]
+    event:
+    - push
+    - tag
