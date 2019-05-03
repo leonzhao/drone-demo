@@ -50,6 +50,8 @@ steps:
     namespace: default 
     tag:                 
         - latest
+    commands:
+      - echo "kubectl -n default set image deployment/ci-demo-deployment ci-demo=allovince/drone-ci-demo:${DRONE_TAG}"
   when:
     event:
     - push
