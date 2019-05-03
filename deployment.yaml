@@ -32,23 +32,7 @@ spec:
         service: drone-demo
     spec:
       containers:
-        - env:
-            - name: PATH
-              valueFrom:
-                configMapKeyRef:
-                  key: PATH
-                  name: services
-            - name: NODE_ENV
-              valueFrom:
-                configMapKeyRef:
-                  key: NODE_ENV
-                  name: services
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  key: PORT
-                  name: services
-          image: 'registry.cn-hongkong.aliyuncs.com/unex/drone-demo:latest'
+        - image: 'registry.cn-hongkong.aliyuncs.com/unex/drone-demo:latest'
           imagePullPolicy: Always
           name: drone-demo
           resources: {}
